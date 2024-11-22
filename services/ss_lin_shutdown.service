@@ -1,0 +1,19 @@
+[Unit]
+Description=SyncSaves Shutdown
+#Requires=network.target
+#After=final.target
+Before=shutdown.target
+
+[Service]
+#Type=oneshot
+#RemainAfterExit=true
+#ExecStop=/home/deck/mnt/xtra/scripts/SyncSaves/sync_saves.sh
+#ExecStop=/home/deck/Documents/scripts/SyncSaves/sync_saves.sh
+#ExecStop=/home/deck/Documents/scripts/SyncSaves/update_and_sync.sh
+ExecStop=/home/deck/Documents/scripts/SyncSaves/sync_saves_backup.sh
+
+[Install]
+#WantedBy=final.target # non-existent
+#WantedBy=shutdown.target
+#WantedBy=multi-user.target # non-existent
+WantedBy=default.target

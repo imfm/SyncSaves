@@ -1,0 +1,62 @@
+1.1.1 - 2024-03-03 11:47AM
+-Added exclude files
+-Added backup backups
+-Added backup previous save
+-Windows version tested
+-Linux version tested
+1.1.2 - 2024-03-03 4:27PM
+-Windows: fixed when path has trailing \
+-Windows: fixed when path has NA
+1.1.3 - 2024-03-03 10:58PM
+-Linux: added log
+1.1.4 - 2024-03-04 12:45PM
+-Linux: added testing mode, just print result, don't execute
+-Linux: got services working, but need to be local. linking service from network seems to break mounting xtra.
+1.1.5 - 2024-03-04 4:49PM
+-Linux: added update_ss.sh
+-Linux: tested update_ss.sh
+1.1.6 - 2024-03-04 5:03PM
+-Linux: added update_and_sync.sh
+1.1.7 - 2024-03-04 7:29PM
+-Linux: added -backup and -update parameters
+1.1.8 - 2024-03-05 5:46PM
+-Linux: specify action in log
+-Windows: add log entry
+-Both: TEST, working
+1.1.9 - 2024-03-05 6:19PM
+-Both: Added sync_saves_update, shortcut to sync_saves -update
+-Linux: NOT TESTED
+-Windows: TESTED
+-Database: Removed tests, mafia 3
+-Database: Added Robocop, windows only
+1.1.10
+-Both: Added option to backup only
+-Database: Put back mafia 3
+1.1.11
+-GRR: Some end of line nonsense apparently, steam deck won't run some of the scripts
+1.1.13
+-Don't know, just backup
+1.1.14
+-Stop synching entire Yuzu folder because it is bloated
+-Add skip
+-Remove backup only
+-Add game user (i.e. profile name/id for yuzu)
+-Add backup directory if doesn't exist
+1.1.15
+-Add Ghost of Tsushima
+-Save log to cloud
+-Lots of random stuff
+-Make sure to use -update or -backup depending on start or shutdown
+-Try to fix services unsuccessfully
+1.1.16
+-Try to fix services
+-Tried a whole bunch of stuff. Update works, but sync does not on boot.
+1.1.17
+-Try to whittle away the issue with sync.
+1.1.18
+-Moved to Y
+1.1.19
+-Replace {win_user} with {lin_pfx_user}
+1.1.20
+-Add readme
+-Add to GitHub

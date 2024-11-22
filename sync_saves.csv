@@ -1,0 +1,7 @@
+game_name,file_names,win_drive,lin_drive,win_path,lin_path,lin_pfx_user,all_path,save_folder,game_user,skip_game,exclude_files
+ShadowoftheTombRaider,*.*,F:,{NA},\WindowsDocuments\Users\{win_user}\Documents,{NA},{NA},{NA},\Shadow of the Tomb Raider,{NA},0,
+ShadowoftheTombRaider,*.*,NA,\home\{lin_user},{NA},\.local\share\feral-interactive,{NA},\Shadow of the Tomb Raider,\SaveData,{NA},0,
+RobocopRC,*.*,C:,{NA},\Users\{win_user}\AppData\Local,{NA},{NA},\RoboCop\Saved,\SaveGames,{NA},1,
+Mafia3,*.*,C:,\home\{lin_user},\Users\{win_user},\.local\share\Steam\steamapps\compatdata\360430\pfx\dosdevices\c:\{win_path},steamuser,\AppData\Local\2K Games\Mafia III,\Data,{NA},0,profile_videosettings.pf
+GhostofTsushima,*.*,C:,\home\{lin_user},\Users\{win_user},\Games\Heroic\Prefixes\default\pfx\drive_c\users\{lin_pfx_user},steamuser,\Documents\Ghost of Tsushima DIRECTOR'S CUT\{game_user},{NA},7.66E+16,1,
+TheQuarry,*.*,C:,\home\{lin_user},\Users\{win_user},\.local\share\Steam\steamapps\compatdata\1577120\pfx\drive_c\{win_path},steamuser,\AppData\Local\TheQuarry\Saved,\SaveGames,{NA},0,

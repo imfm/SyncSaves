@@ -1,0 +1,90 @@
+make sym links stored in (may have to create the directory):
+/home/deck/.config/systemd/user/
+
+enabled with:
+systemctl --user daemon-reload
+systemctl --user enable ss_lin_startup.service
+systemctl --user enable ss_lin_shutdown.service
+
+check status:
+systemctl --user status ss_lin_startup
+
+make sure paths in service match path where script is stored (i.e.):
+/home/deck/Documents/scripts/SyncSaves/
+
+mounting X: drive
+
+in /etc/fstab
+#_netdev: wait for network (doesn't seem to work)
+#noauto: mount only when requested (not sure exactly how that happens)
+#x-systemd.automount: Mounts only when the drive is needed. Seems to be needed, otherwise SteamOS tries to mount too early?, then gives up.
+#nofail: don't flip out if you can't mount it
+//193.168.50.50/xtra /home/deck/mnt/xtra cifs uid=1000,username=hts,password=pass1!,x-systemd.automount,nofail 0 0
+in terminal (requires sudo)
+sudo mount -t cifs //193.168.50.50/xtra /home/deck/mnt/xtra -o uid=1000,username=hts,password=pass1!
+sudo mount -t cifs -o guest,vers=2.0 //193.168.50.1/y /media/y
+
+#------ STUFF I'VE GIVEN UP ON ------#
+
+?Take ownership of mount point?
+sudo chown -R deck /home/deck/mnt/xtra
+
+To be able to mount that folder as a normal user, include the mount options for the cifs folder in the configuration file /etc/fstab, and add the options noauto,user, similar to:
+
+# WORKS
+//193.168.50.50/xtra /home/deck/mnt/xtra cifs uid=1000,username=hts,password=pass1!,noauto,user,nofail 0 0
+## TRY THIS FOR MORE FLEXIBILITY
+//193.168.50.50/xtra /home/deck/mnt/xtra cifs uid=1000,username=hts,password=pass1!,x-systemd.automount,user,nofail 0 0
+
+The option noauto will make sure the drive is not mounted during startup, but will nevertheless register all parameters necessary to mount the drive. The option user will allow any user to mount the drive.
+
+With this setup, any user is able to mount the share with the mount command, followed by the path that was specified in fstab where the folder is to be mounted, e.g.
+
+mount /home/deck/mnt/xtra
+
+## mounts the drive reliably, but doesn't fix the issue with drive not being mounted when service runs
+# Guide to create mounts as systemd service manually
+https://www.reddit.com/r/SteamDeck/comments/ymjnjy/mounting_smb_shares_with_systemd/
+
+#UGH, can't copy because sudo. Have to create and then paste into nano
+sudo nano /etc/systemd/system/home-deck-mnt-xtra.mount
+sudo nano /etc/systemd/system/home-deck-mnt-xtra.automount
+
+Tell systemd we made some changes
+sudo systemctl daemon-reload
+
+Start the .mount
+sudo systemctl enable --now home-deck-mnt-xtra.mount
+
+Check for errors
+systemctl status home-deck-mnt-xtra.mount
+
+Start the .automount
+sudo systemctl enable --now home-deck-mnt-xtra.automount
+
+Check for errors
+systemctl status home-deck-mnt-xtra.automount
+
+If there are no errors, we should have a mount. Lets check and see:
+ls -al /home/deck/mnt/xtra
+
+Reboot 
+sudo reboot
+
+Reconnect via SSH (or switch back to Desktop and start Konsole) and verify your share is still there
+ls -al /home/deck/mnt/xtra
+
+# Gonna try to run the service as root
+sudo nano /etc/systemd/system/ss_lin_startup.service
+#Tell systemd we made some changes
+sudo systemctl daemon-reload
+#Start the service
+sudo systemctl enable --now ss_lin_startup.service
+#Check for errors
+systemctl status ss_lin_startup.service
+## mounts the drive reliably, but doesn't fix the issue with drive not being mounted when service runs
+
+#remove system services
+sudo rm /etc/systemd/system/home-deck-mnt-xtra.mount
+sudo rm /etc/systemd/system/home-deck-mnt-xtra.automount
+sudo rm /etc/systemd/system/ss_lin_startup.service

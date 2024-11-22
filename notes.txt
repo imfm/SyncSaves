@@ -1,0 +1,6 @@
+make sure any new scripts are executable:
+chmod +x script.sh
+
+make sure to save file in TextPad as:
+Line ending: UNIX
+Encoding: ANSI (not sure this matters)

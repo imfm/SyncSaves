@@ -1,0 +1,26 @@
+[Unit]
+Description=SyncSaves Startup
+#Requires=network.target
+#Requires=home-deck-mnt-xtra.mount
+#After=network-online.target systemd-resolved.service home-deck-mnt-xtra.mount
+#Wants=network-online.target systemd-resolved.service home-deck-mnt-xtra.mount
+#After=home-deck-mnt-xtra.mount
+After=home-deck-mnt-y.mount
+
+[Service]
+#Type=oneshot
+#Type=idle
+#ExecStart=/home/deck/Documents/scripts/svc_test/svc_test.sh
+#ExecStart=/home/deck/mnt/xtra/scripts/SyncSaves/sync_saves.sh
+#ExecStart=/home/deck/Documents/scripts/SyncSaves/update_ss.sh
+#ExecStart=/home/deck/Documents/scripts/SyncSaves/sync_saves.sh
+ExecStart=/home/deck/Documents/scripts/SyncSaves/update_and_sync.sh
+#ExecStart=/home/deck/Documents/scripts/SyncSaves/fix_sync_saves.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
+#WantedBy=graphical.target
+#WantedBy=network-online.target -steamos claims this doesn't exist (can't access from --user)
+#WantedBy=multi-user.target -steamos claims this doesn't exist (can't access from --user)
