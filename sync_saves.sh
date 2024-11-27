@@ -37,10 +37,12 @@ else
  alt=$2
 fi
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-### Manually set script directory
 #SCRIPT_DIR=/home/deck/Documents/scripts/SyncSaves
-EXPECTED_DIR=/home/deck/Documents/scripts/SyncSaves
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+EXPECTED_DIR=SCRIPT_DIR
+### Manually set script directory
+### Sometimes the Steam Deck starts in the wrong directory and can't find common.cfg or sync_saves.csv. As a horrible workaround, set script directory here. 
+#EXPECTED_DIR=/home/deck/Documents/scripts/SyncSaves
 if [ $SCRIPT_DIR != $EXPECTED_DIR ]
 then
  echo "Warning, SCRIPT_DIR is not pointing to EXPECTED_DIR location: $SCRIPT_DIR"
