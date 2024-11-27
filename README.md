@@ -1,5 +1,12 @@
 # SyncSaves
-Scripts to synchronize games saves between multiple operating systems using Network Attached Storage or NAS. Designed to synchronize saves between a Windows PC and a Steam Deck, but should work with any Linux system. It will create a backup of your saves, a backup of the backup, and a backup of the backup's backup. I created this to synchronize save for games that don't support cloud saves (or don't support them properly) and non-steam games. Please be aware that some games saves can have ridiculous file sizes (i.e. Fallout 4).
+
+*USE AT YOUR OWN RISK. I TAKE NO RESPONSIBILITY FOR ANY DAMAGE CAUSED TO YOUR SYSTEMS OR YOUR SAVE FILES. MAKE MANUAL BACKUPS BEFORE YOU RUN ANY SCRIPTS ON ANYTHING.*
+
+These are scripts to synchronize games saves between multiple operating systems using Network Attached Storage or NAS. Designed to synchronize saves between a Windows PC and a Steam Deck, but should work with any Linux system. It will create a backup of your saves, a backup of the backup, and a backup of the backup's backup. I created this to synchronize save for games that don't support cloud saves (or don't support them properly) and non-steam games. Please be aware that some games saves can have ridiculous file sizes (i.e. Fallout 4).
+
+This is currently kind of just a proof of concept. It works on my systems, but I really wouldn't recommend trying to use this on your system if you don't know what you're doing. I would love to create a nice clean installer, but that is not in the cards at the moment. 
+
+These are just shell scripts, not new software. These are running built in applications in Linux and Windows for making efficient backups of files. The Windows scripts use Robocopy and the Linux scripts use Rsync which attempt to copy files from one directory to another, skipping any old or unchanged files. This script just helps to organize the paths to all the files and run backups on those. 
 
 The first step is to setup the paths in the file "sync_saves.csv". In most cases you can use a single line for each game. In some cases like Shadow of the Tomb Raider, the file structure is so different between Windows and Linux that you will need to create a seperate line for each version. Each field is defined as:
 
@@ -64,7 +71,7 @@ NAS: Y:\backups\saves\syncsave\MyGame
 
 How to run it?
 
-On windows, run "sync_saves.bat" to backup your files to the NAS, and run "sync_saves_update.bat" to pull down any new data. It SHOULD verify that it is copying the newest file before copying anything, but I can't make any guarantees. Also keep in mind that different file systems and NAS protocols handle timestamps differently and sometimes don't play nice with each other, so do lots of testing before using real files. There are number of ways to get this running automatically at startup on Windows. Here is one way:
+On Windows, run "sync_saves.bat" to backup your files to the NAS, and run "sync_saves_update.bat" to pull down any new data. It SHOULD verify that it is copying the newest file before copying anything, but I can't make any guarantees. Also keep in mind that different file systems and NAS protocols handle timestamps differently and sometimes don't play nice with each other, so do lots of testing before using real files. There are number of ways to get this running automatically at startup on Windows. Here is one way:
 
 1) Select the Start button and scroll to find the app you want to run at startup.
 2) Right-click the app, select More, and then select Open file location. This opens the location where the shortcut to the app is saved. If there isn't an option for Open file location, it means the app can't run at startup.
