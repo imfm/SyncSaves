@@ -64,7 +64,7 @@ NAS: Y:\backups\saves\syncsave\MyGame
 
 How to run it?
 
-On windows, run "sync_saves.bat". There are number of ways to get this running automatically at startup on Windows. Here is one way:
+On windows, run "sync_saves.bat" to backup your files to the NAS, and run "sync_saves_update.bat" to pull down any new data. It SHOULD verify that it is copying the newest file before copying anything, but I can't make any guarantees. Also keep in mind that different file systems and NAS protocols handle timestamps differently and sometimes don't play nice with each other, so do lots of testing before using real files. There are number of ways to get this running automatically at startup on Windows. Here is one way:
 
 1) Select the Start button and scroll to find the app you want to run at startup.
 2) Right-click the app, select More, and then select Open file location. This opens the location where the shortcut to the app is saved. If there isn't an option for Open file location, it means the app can't run at startup.
@@ -75,7 +75,7 @@ This may not work on all systems. Getting it to run on shutdown is a bit more of
 1) go to your local group policy editor (Click Start, type gpedit.msc in the Start Search box, and then press ENTER.)
 2) Once this is loaded, go to the following path: Computer Configuration > Windows Settings > Scripts (Startup/Shutdown) > Shutdown and add the script.
 
-On Linux, run "sync_saves.sh". Getting it to run automatically is incredibly complicated. I've included some services for systemd and some notes on how to set it up under the services folder, but I would not recommend you do it unless you are very comfortable with Linux. Also, most of the time the Steam Deck refuses to mount the network drive before running the script which prevents it from working properly.
+On Linux, run "sync_saves.sh" to backup your files to the NAS, and run "sync_saves_update.sh" to pull down any new data. Same caveats as above, don't just assume your file systems and file sharing protocols will play nice with file modification timestamps. Getting it to run automatically is incredibly complicated. I've included some services for systemd and some notes on how to set it up under the services folder, but I would not recommend you do it unless you are very comfortable with Linux. Also, most of the time the Steam Deck refuses to mount the network drive before running the script which prevents it from working properly.
 
 The recommended method is to go to desktop mode, find the script, right click it and mark it as executable. Then add the script to you non-steam games and you can run it directly in gaming mode.
 
